@@ -45,6 +45,11 @@ ID int primary key identity(1,1),
 Nombre varchar (50),
 Icono varchar(max)
 )
+create table listas(
+ID int identity (1,1) primary key,
+nombre varchar (50)
+)
+
 
 create table permisos(
 ID int primary key identity(1,1),
@@ -63,20 +68,26 @@ foreign key (permisoID)
 references permisos(ID)
 )
 
-create table favPeliculas(
-ID int identity(1,1) primary key,
+create table listasPelis(
+listaID int,
 peliculaID int,
-constraint fk_pelicula_fav
-foreign key (peliculaID) 
-references peliculas(ID)
+constraint fk_pelis_listas
+foreign key (peliculaID)
+references peliculas(ID),
+constraint fk_listas_pelis
+foreign key (listaID)
+references listas(ID)
 )
 
-create table favSeries(
-ID int identity(1,1) primary key,
+create table listaSeries(
+listaID int,
 serieID int,
-constraint fk_serie_fav
+constraint fk_series_listas
 foreign key (serieID) 
-references series(ID)
+references series(ID),
+constraint fk_listas_series
+foreign key (listaID)
+references listas(ID)
 )
 
 
